@@ -1,5 +1,5 @@
 let pizzaJson = [
-    {id:1, name:'Pepperoni', img:'images/pizza.png', price:20.19, sizes:['100g', '530g', '860g'], description:'Descrição genérica dos ingredientes da pizza. Imagem ilustrativa aleatória.'},
+    {id:1, name:'Pepperoni', img:'images/pizza.png', price:20.19, sizes:['320g', '530g', '860g'], description:'Descrição genérica dos ingredientes da pizza. Imagem ilustrativa aleatória.'},
     {id:2, name:'Calabresa', img:'images/pizza2.png', price:18.00, sizes:['320g', '530g', '860g'], description:'Descrição genérica dos ingredientes da pizza. Imagem ilustrativa aleatória.'},
     {id:3, name:'Quatro Queijos', img:'images/pizza3.png', price:17.45, sizes:['320g', '530g', '860g'], description:'Descrição genérica dos ingredientes da pizza. Imagem ilustrativa aleatória.'},
     {id:4, name:'Americana', img:'images/pizza4.png', price:19.77, sizes:['320g', '530g', '860g'], description:'Descrição genérica dos ingredientes da pizza. Imagem ilustrativa aleatória.'},
