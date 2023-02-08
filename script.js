@@ -22,6 +22,7 @@ pizzaJson.map((item, index) => {
     getEl('.pizzaInfo h1').innerHTML = pizzaJson[key].name;
     getEl('.pizzaInfo--desc').innerHTML = pizzaJson[key].description;
     getEl('.pizzaInfo--actualPrice').innerHTML = `R$ ${pizzaJson[key].price.toFixed(2).replace('.', ',')}`;
+    getEl('.pizzaInfo--size.selected').classList.remove('selected');
     
     getAll('.pizzaInfo--size').forEach((size, sizeIndex) => {
       if(sizeIndex === 2) {
@@ -57,11 +58,18 @@ getAll('.pizzaInfo--cancelButton, .pizzaInfo--cancelMobileButton').forEach((butt
 getEl('.pizzaInfo--qtmais').addEventListener('click', () => {
   modalCount += 1;
   getEl('.pizzaInfo--qt').innerHTML = modalCount;
-})
+});
 
 getEl('.pizzaInfo--qtmenos').addEventListener('click', () => {
   if(modalCount > 1) {
     modalCount -= 1;
     getEl('.pizzaInfo--qt').innerHTML = modalCount;
-  }
+  };
+});
+
+getAll('.pizzaInfo--size').forEach((size) => {
+  size.addEventListener('click', (e) => {
+    getEl('.pizzaInfo--size.selected').classList.remove('selected');
+    e.currentTarget.classList.add('selected');
+  });
 });
