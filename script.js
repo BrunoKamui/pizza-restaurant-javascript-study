@@ -6,7 +6,7 @@ let modalCount = 1;
 let modalKey = 0;
 
 //Pizza listing
-pizzaJson.map((item, index) => {
+pizzaJson.forEach((item, index) => {
   let pizzaItem = getEl('.models .pizza-item').cloneNode(true);
 
   pizzaItem.querySelector('a').setAttribute('data-key', index);
