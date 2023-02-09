@@ -99,22 +99,35 @@ getEl('.pizzaInfo--addButton').addEventListener('click', () => {
   closeModal();
 });
 
+// Mobile Cart Events
+getEl('.menu-openner span').addEventListener('click', () => {
+  if(cart.length > 0) {
+    getEl('aside').style.left = '0';
+  }
+})
+
+getEl('.menu-closer').addEventListener('click', () => {
+  getEl('aside').style.left = '100vw';
+})
+
 // Cart Events
 function updateCart() {
+  getEl('.menu-openner span').innerHTML = cart.length;
+  
   if(cart.length > 0) {
     getEl('aside').classList.add('show');
     getEl('.cart').innerHTML = '';
-
+    
     let subTotal = 0;
     let discount = 0;
     let total = 0;
-
+    
     for(let i in cart) {
       let pizzaItem = pizzaJson.find((item) => item.id === cart[i].id);
       subTotal += pizzaItem.price * cart[i].qt;
-
+      
       let cartItem = getEl('.models .cart--item').cloneNode(true);
-
+      
       let pizzaSizeName;
       switch(cart[i].size) {
         case 0:
@@ -123,42 +136,43 @@ function updateCart() {
         case 1:
           pizzaSizeName = 'M';
           break;
-        case 2:
-          pizzaSizeName = 'G';
-          break;
-      }
-      
-      let pizzaName = `${pizzaItem.name} (${pizzaSizeName})`
-
-      cartItem.querySelector('img').src = pizzaItem.img;
-      cartItem.querySelector('.cart--item-nome').innerHTML = pizzaName;
-      cartItem.querySelector('.cart--item--qt').innerHTML = cart[i].qt;
-
-      cartItem.querySelector('.cart--item-qtmais').addEventListener('click', () => {
-        cart[i].qt += 1;
-        updateCart();
-      })
-
-      cartItem.querySelector('.cart--item-qtmenos').addEventListener('click', () => {
-        if(cart[i].qt > 1) {
-          cart[i].qt -= 1;
-        } else {
-          cart.splice(i, 1);
+          case 2:
+            pizzaSizeName = 'G';
+            break;
+          }
+          
+          let pizzaName = `${pizzaItem.name} (${pizzaSizeName})`
+          
+          cartItem.querySelector('img').src = pizzaItem.img;
+          cartItem.querySelector('.cart--item-nome').innerHTML = pizzaName;
+          cartItem.querySelector('.cart--item--qt').innerHTML = cart[i].qt;
+          
+          cartItem.querySelector('.cart--item-qtmais').addEventListener('click', () => {
+            cart[i].qt += 1;
+            updateCart();
+          })
+          
+          cartItem.querySelector('.cart--item-qtmenos').addEventListener('click', () => {
+            if(cart[i].qt > 1) {
+              cart[i].qt -= 1;
+            } else {
+              cart.splice(i, 1);
+            }
+            updateCart();
+          })
+          
+          getEl('.cart').append(cartItem);
         }
-        updateCart();
-      })
-
-      getEl('.cart').append(cartItem);
-    }
-
-    discount = subTotal * 0.1;
-    total = subTotal - discount;
-
-    getEl('.subtotal span:last-child').innerHTML = `R$ ${subTotal.toFixed(2).replace('.', ',')}`
-    getEl('.desconto span:last-child').innerHTML = `R$ ${discount.toFixed(2).replace('.', ',')}`
-    getEl('.total span:last-child').innerHTML = `R$ ${total.toFixed(2).replace('.', ',')}`
-
+        
+        discount = subTotal * 0.1;
+        total = subTotal - discount;
+        
+        getEl('.subtotal span:last-child').innerHTML = `R$ ${subTotal.toFixed(2).replace('.', ',')}`
+        getEl('.desconto span:last-child').innerHTML = `R$ ${discount.toFixed(2).replace('.', ',')}`
+        getEl('.total span:last-child').innerHTML = `R$ ${total.toFixed(2).replace('.', ',')}`
+        
   } else {
     getEl('aside').classList.remove('show');
+    getEl('aside').style.left = '100vw';
   }
 }

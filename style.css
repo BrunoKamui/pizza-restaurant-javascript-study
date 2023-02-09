@@ -380,6 +380,7 @@ h1 {
 
     .pizzaWindowBody {
         width:100vw;
+        height:100vh;
         display:block;
         padding:20px;
         border-radius:0;
