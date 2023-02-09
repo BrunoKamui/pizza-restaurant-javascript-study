@@ -128,6 +128,20 @@ function updateCart() {
       cartItem.querySelector('.cart--item-nome').innerHTML = pizzaName;
       cartItem.querySelector('.cart--item--qt').innerHTML = cart[i].qt;
 
+      cartItem.querySelector('.cart--item-qtmais').addEventListener('click', () => {
+        cart[i].qt += 1;
+        updateCart();
+      })
+
+      cartItem.querySelector('.cart--item-qtmenos').addEventListener('click', () => {
+        if(cart[i].qt > 1) {
+          cart[i].qt -= 1;
+        } else {
+          cart.splice(i, 1);
+        }
+        updateCart();
+      })
+
       getEl('.cart').append(cartItem);
     }
 
