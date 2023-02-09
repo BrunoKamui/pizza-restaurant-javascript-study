@@ -95,5 +95,21 @@ getEl('.pizzaInfo--addButton').addEventListener('click', () => {
     })
   }
 
+  updateCart();
   closeModal();
 });
+
+// Cart Events
+function updateCart() {
+  if(cart.length > 0) {
+    getEl('aside').classList.add('show');
+
+    for(let i in cart) {
+      let pizzaItem = pizzaJson.find((item) => item.id === cart[i].id);
+      console.log(pizzaItem);
+    }
+
+  } else {
+    getEl('aside').classList.remove('show');
+  }
+}
