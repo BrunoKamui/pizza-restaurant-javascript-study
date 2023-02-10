@@ -106,7 +106,7 @@ getEl('.pizzaInfo--addButton').addEventListener('click', () => {
 });
 
 // Mobile Cart Events
-getEl('.menu-openner span').addEventListener('click', () => {
+getEl('.menu-openner').addEventListener('click', () => {
   if(cart.length > 0) {
     getEl('aside').style.left = '0';
   }
